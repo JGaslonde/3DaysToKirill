@@ -19,22 +19,21 @@ food_salad = {
 	nothing but leaves.""",
 }
 
-food_kebab = {
-	"id": "kebab",
+food_cookie = {
+	"id": "cookie",
 
-	"name": "a kebab",
+	"name": "a cookie",
 
 	"description":
-	"""One of the greasiest kebabs you have ever seen. You wonder how it made it
-	here on its own.""",
+	"""One of the nicest, most expensive cookies you will ever have.""",
 }
 
 food_banana= {
-	"id": "",
+	"id": "banana",
 
 	"name": "a banana",
 
 	"description":
 	"""hahah bottom """,
 }
-food = [food_burger, food_salad, food_kebab, food_banana]
+food = [food_burger, food_salad, food_cookie food_banana]
