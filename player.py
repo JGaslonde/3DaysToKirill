@@ -1,12 +1,17 @@
+from map import rooms
+from items import *
+from food import *
+
 player = {
     "name": "Keith",
 
-    "health": 1000, 
+    "health": 100,
 
-    "alive": True,
-    
-    "inventory": [],
+    "hunger": 0, 
 
-    "score" = 0
+    "alive": True
 
 }
+
+current_room = rooms["Students Union"]
+inventory = [food_burger, item_key_1]

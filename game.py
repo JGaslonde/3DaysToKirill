@@ -1,7 +1,10 @@
 
 from map import rooms
 from items import *
+from food import *
 from player import *
+from punctuation import *
+import sys
 
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
@@ -122,7 +125,7 @@ def print_exit(direction, leads_to):
     print("GO " + direction.upper() + " to " + leads_to + ".")
 
 
-def print_menu(exits, room_items, inv_items):
+def print_menu(exits, room_items, inv_items, food_items):
     """This function displays the menu of available actions to the player. The
     argument exits is a dictionary of exits as exemplified in map.py. The
     arguments room_items and inv_items are the items lying around in the room
@@ -165,6 +168,11 @@ def print_menu(exits, room_items, inv_items):
     for item in inv_items:
         # Print the option to drop each item.
         print("DROP " + item["id"].upper() + " to drop your " + item["name"] + ".")
+    # Iterate over each item in the food inventory.
+    for food in food_items:
+        if food in inventory:
+        # Print the option to eat each item.
+            print("EAT " + food["id"].upper() + " to eat " + food["name"] + ".")
     print("What do you want to do?")
 
 
@@ -197,6 +205,7 @@ def execute_go(direction):
     global current_room
     if direction in current_room["exits"]:            
             current_room = move(current_room["exits"], direction)
+            calculate_hunger()
             return current_room
     else:
         print("You cannot go there.")
@@ -246,13 +255,28 @@ def execute_drop(item_id):
             # If there items in the inventory, but the input does not match any of them, print said message.
             print("You cannot drop that item")
 
+
 def execute_eat(food_item):
-	"""This function takes an food_item as an argument and removes this item from
-	the player's inventory and adds the value of the food_item to the player's health.
-	If no such items exist in the player's inventory, then the function prints, 
-	"You cannot eat that." 
-	"""
-	pass
+    """This function takes an food_item as an argument and removes this item from
+    the player's inventory and adds the value of the food_item to the player's health.
+    If no such items exist in the player's inventory, then the function prints, 
+    "You cannot eat that." 
+    """
+    # If there is nothing in inventory display said message.
+    if not (inventory):
+        print("You have nothing to eat!")
+    else: 
+        for food in inventory:
+            # If there are items in the inventory and it matches the players input:
+            if food["id"] == food_item:
+                # Remove from inventory and add to the current rooms list of items.
+                inventory.remove(food)
+                player["hunger"] = 100
+                break
+
+        if food_item not in (food["id"]):
+            # If there items in the inventory, but the input does not match any of them, print said message.
+            print("You cannot eat that item")
      
 
 def execute_command(command):
@@ -288,15 +312,16 @@ def execute_command(command):
         execute_exit()
 
     elif command[0] == "eat":
-    	if len(command) > 1:
-    		execute_eat(command[1])
-    	else:
-    		print("Eat what?")
+        if len(command) > 1:
+            execute_eat(command[1])
+        else:
+            print("Eat what?")
+            
     else:
         print("This makes no sense.")
 
 
-def menu(exits, room_items, inv_items):
+def menu(exits, room_items, inv_items, food_items):
     """This function, given a dictionary of possible exits from a room, and a list
     of items found in the room and carried by the player, prints the menu of
     actions using print_menu() function. It then prompts the player to type an
@@ -305,7 +330,7 @@ def menu(exits, room_items, inv_items):
     """
 
     # Display menu
-    print_menu(exits, room_items, inv_items)
+    print_menu(exits, room_items, inv_items, food_items)
 
     # Read player's input
     user_input = input("> ")
@@ -332,11 +357,12 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
-def final_boss():
-	"""This function determines if the player has all the necessary items in
-	order to progress to the final room.
-	"""
 
+def final_boss():
+    """This function determines if the player has all the necessary items in
+    order to progress to the final room.
+    """
+    pass
 
 def win():
     """This function defines the winning condition of the game. Once the winning
@@ -345,43 +371,71 @@ def win():
     pass
 
 
-def damage(player):
-	"""This function calcuates the damage to remove off the player each time they
-	move between rooms or are involved in combat.
-	"""
-	player["health"] -= rooms["damage"]
+def hunger():
+    """This function prints the hunger of the player each time they move between rooms.
+    If the player's health is 0 or lower, print a message telling the player to eat 
+    soon or they will starve as this function will also decrease the players health by
+    10.
+    """
+    print("Your hunger is: " + str(player["hunger"]))
+
+    if player["hunger"] == 0:
+        print("Get food quick or you will starve.")
+        player["health"] -= 10 
+        print()
 
 
-def alive(health):
-	"""This function takes the player's health as an argument and checks if the 
-	health is 0. If so then the function will return that the player is dead and
-	the game is over. 
+def calculate_hunger():
+    """This function calcluates the hunger off player each time they move between rooms.
+    The player's health will decrease by 5 each time they move between rooms.
+    """
+    
+    player["hunger"] -= 5
+    
+    if player["hunger"] < 0:
+        player["hunger"] = 0
 
-	>>> alive(10):
-	True
-	>>> alive(0):
-	False
-	>>> alive(-10):
-	False
-	"""
-	if health <= 0:
-		return False
+    return player["hunger"]
+
+
+def calculate_health():
+    if current_room["Bad Rooms"] == True:
+        player["health"] -= 15
+
+#ADD BATTLE SHIT HERE 
+
+
+def alive():
+    """This function takes the player's health as an argument and checks if the 
+    health is 0. If so then the function will return that the player is dead and
+    the game is over. 
+
+    >>> alive(10):
+    True
+    >>> alive(0):
+    False
+    >>> alive(-10):
+    False
+    """
+    if player["health"] <= 0:
+        return False
 
 
 # This is the entry point of our program
 def main():
     # Main game loop
     while True:
-        # Display game status (room description, inventory, mass etc.)
+        # Display game status (room description, inventory, hunger, health, etc.)
         print("---------------------------------------------------")
         print_room(current_room)
         print_inventory_items(inventory)
         # Check if the player has won the game.
-        alive(health)
-        win()
-
+        alive()
+        hunger()
+        print("Your health is: " + str(player["health"]))
+        print()
         # If not, show the menu with possible actions and ask the player
-        command = menu(current_room["exits"], current_room["items"], inventory)
+        command = menu(current_room["exits"], current_room["items"], inventory, food)
 
         # Execute the player's command
         execute_command(command)

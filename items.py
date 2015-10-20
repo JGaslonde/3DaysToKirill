@@ -32,8 +32,6 @@ food_burger = {
 
 	"description":
 	"""A tasty burger from everyone's favourite burger chain....Wendy's.""",
-
-	"health": 10
 }
 
 food_salad = {
@@ -44,8 +42,6 @@ food_salad = {
 	"description":
 	"""A healthy salad grown fresh in an alley near Tiger Tiger.....huh....
 	nothing but leaves.""",
-
-	"health": 15
 }
 
 food_kebab = {
@@ -56,8 +52,6 @@ food_kebab = {
 	"description":
 	"""One of the greasiest kebabs you have ever seen. You wonder how it made it
 	here on its own.""",
-
-	"health": 5
 }
 
 food_banana= {
@@ -67,6 +61,4 @@ food_banana= {
 
 	"description":
 	"""hahah bottom """,
-
-	"health": 13
 }
