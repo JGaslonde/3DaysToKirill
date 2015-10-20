@@ -6,11 +6,10 @@ room_Students_Union = {
     "name": "Students Union",
 
     "description":
-    """You are sitting in the Students Union lounge while in TV you saw that 
-the best teacher in all Computer Science School is arrested and kept in a 
-basement with two metal doors, which have to be open by using TWO KEYS and
-THE BOTTLE OF CHLOROFORM, in order to make very strict guardian to be inactive 
-this time """,
+    """You are sitting in the Students Union lounge while on TV you see that 
+your favourite lecturer in Computer Science is arrested and kept in Prison 
+under high securitiy. There are two secure doors, which have to be opened by using 
+TWO KEYS. You will also need something in order to knock out the guard at the entrance""",
 
     "exits": {"west": "Matt Office", "south": "Information Centre", "north": "GP", "east": "Support Centre"},
 
@@ -24,8 +23,8 @@ room_Info_Centre = {
     "name": "Information Centre",
 
     "description":
-    """You reach Information Centre where you can find out the reasons of the 
-kidnapping and take some snacks""",
+    """You are at the Information Centre, there are a few members of staff
+    discussing the arrest of Kirill. On the counter there is food.""",
 
     "exits": {"west": "Courts", "east": "Students Union"},
 
@@ -40,7 +39,7 @@ room_Hall = {
     "name": "Students Union Hall",
 
     "description":
-    """Now you are standing in one of the Students Union halls full of wires
+    """Now you are standing in one of the Students Union halls which is full of wires
 which are like snakes who wants to take your food and waste your energy in 
 order to make you slower. Make sure you won't be doing the same mistake again""",
 
@@ -57,10 +56,9 @@ room_Lounge = {
     "name": "The Lounge",
 
     "description":
-    """Now you can take a rest because this room is the safest place in 
-Students Union. So look around and make sure you find out everything that 
-is related with Kirill last visited places as one of them should be 
-somewhere close, make sure you do not miss that place""",
+    """Now you can take a rest because this room is the safest place of the game. 
+    So look around and make sure you find out everything that 
+is related with Kirill's last visited areas as one of them should give some clues.""",
 
     "exits": {"north": "Library", "south": "Students Union"},
 
@@ -75,7 +73,7 @@ room_Library = {
     "name": "Library",
 
     "description":
-    """Congratulations you found one of the places where Kirill was before kidnapping,
+    """Congratulations you found one of the places where Kirill was before he was arrested,
 now you only have to take the key which will be very important when you will reach Prison""",
 
     "exits": {"north": "Y-Plas", "south": "The Lounge", "west": "The Taf"},
@@ -91,8 +89,8 @@ room_Taf = {
     "name": "The Taf",
 
     "description":
-    """ You are choosing the best ways to escape, keep doing it till the end.
-And make sure you have enough health to finish the game.""",
+    """ You are plotting the best way to help Kirill escape, keep doing this until the end.
+Also make sure you have enough health to finish the game.""",
 
     "exits": {"south": "Students Union", "west": "Support Centre"},
 
@@ -107,10 +105,9 @@ room_Plas = {
     "name": "Y Plas",
 
     "description":
-    """Oh, that is bad...
-    Now you are going to be attacked by the drunkest students in the world
-which are more similar to zombies than to students... 
-I believe IT WILL TAKE A WHILE to make them inactive """,
+    """Oh, this is bad...
+    Now you are going to be attacked by the drunkest students you have ever
+    seen! They are like zombies! IT WILL TAKE A WHILE to get past these. """,
 
     "exits": {"east": "Library", "west": "Support Centre"},
 
@@ -126,11 +123,9 @@ room_Support = {
 
     "description":
     """ You are getting lucky!!!
-Now you are able to get answers in most important questions:
-1. There is four bad rooms which make slower so make sure you won't be going 
-there
-2. There is no way out of prison without Keys and Chloroform, make sure you 
-collect everything before going there""",
+    You have recieved more information about where Kirill is being held. 
+    There is no way in or out of prison without the Two Keys AND Chloroform, make sure you 
+    collect everything before going there!""",
 
     "exits": {"north": "Y-Plas", "east": "The Taf", "west": "GP"},
     "items": [],
@@ -144,8 +139,8 @@ room_GP = {
     "name": "GP",
 
     "description":
-    """Lucky enough to find one more item needed to release your teacher.
-Keep looking around and make sure you choice the best way out """,
+    """You have reached the GP office. It is unsure why but there
+    is a bottle of Chloroform on the table, this may come in handy!""",
 
     "exits": {"west": "Trevithick Library", "east": "Support Centre", "south": "Lab 2"},
 
@@ -160,10 +155,12 @@ room_Lab2 = {
     "name": "Lab 2",
 
     "description":
-    """Now you will see that our computers are doing after work:
-you will have to fight if you doesn't want to be eaten by them
-because they have very sharp teeth and very strong and long tales 
-which are moving very fast in order to make you SLOVER AND MORE HARMFUL""",
+    """Something bad is happening in the lab!
+    The room has become infested with little bald ugly creatures which are
+    tearing appart the room and strangling students with cables!
+    This could potentially cause a fire hazard?
+    I wonder where the Health and Safety officer is...
+    You must fight your way through and get out quick!""",
 
     "exits": {"north": "GP", "south": "Kirill Office"},
 
@@ -178,10 +175,10 @@ room_Trevithick = {
     "name": "Trevithick Library",
 
     "description":
-    """Now you are able to know that Kirill was in one of these offices:
-Kirill Office or Matt Office, but which one you have to choice by yourself, 
-just make sure you make the right choice because you are surounded 
-by Bad rooms in both ways""",
+    """Now you know that Kirill was in one of these offices:
+    Kirill's Office or Matt's Office, but which one? You will have to find out yourself, 
+    just make sure you make the right choice because you are surounded 
+    by Bad rooms in both ways""",
 
     "exits": {"west": "Cafeteria", "east": "GP", "south": "Lab 2"},
 
@@ -197,8 +194,8 @@ room_Cafeteria = {
 
     "description":
     """Yay!!!
-You found the place full of food, just choice whatever you want and 
-make yourself healthier""",
+    You found the cafeteria which is full of food, just chose whatever you want to eat
+    when you're feeling hungry. You need to stay healthy to complete your mission!""",
 
     "exits": {"east": "Matt Office", "south": "Kirill Office"},
 
@@ -230,12 +227,13 @@ room_Starbucks = {
     "name": "Starbucks Coffee",
 
     "description":
-    """ You found the most expensive and the strongest coffee ever:
-Just choice the food you want and keep going! """,
+    """ You found the most expensive and the strongest coffee ever.
+    There are also a few snacks here, can you really afford it?
+    Just choose the food you want and keep going! """,
 
     "exits": {"north": "Kirill Office", "east": "Courts"},
 
-    "items": [food_kebab],
+    "items": [food_cookie],
 
     "Bad Room": False
 
@@ -247,9 +245,10 @@ room_MOffice = {
 
     "description":
     """ Oh, that is horrible!
-All room is destroyed by monster which is coming after you now.
-Make sure you have enough strenght to fight him
-And enough time to reach Kirill""",
+    All room is destroyed by the same creatures from the lab!
+    Their attention is on you, they run at you as you panic!
+    Make sure you have enough strenght to fight them...
+    Do you really have time for this??""",
 
     "exits": {"east": "Courts", "south": "Starbucks Coffee"},
 
@@ -264,9 +263,9 @@ room_Courts = {
     "name": "Magistrate Courts",
 
     "description":
-    """ FANTASTIC! 
-Now you are able to know in which cell they are keeping Kirill and 
-the best time to use Chloroform against guardian. Just keep going!!! """,
+    """ FANTASTIC! You're nearly there.
+    Now you are able to find out in which cell they are keeping Kirill and 
+    the best time to use the Chloroform on the guard. Just keep going!!! """,
 
     "exits": {"north": "Matt Office", "east": "Prison"},
 
@@ -278,13 +277,14 @@ the best time to use Chloroform against guardian. Just keep going!!! """,
 
 
 room_Prison = {
-    "name": "Prison Basament",
+    "name": "Prison",
 
     "description":
     """Congratulations!!!!
-You already reached Kirill Everything you need to do now
-Is just to use CHLOROFORM against guardian 
-And TWO KEYS to Unlock the doors""",
+    
+    You have found Kirill.
+    All you need to do is knockout the guard and free Kirill
+    Use CHLOROFORM to knock him out and use the TWO KEYS to unlock the doors""",
 
     "exits": {},
 
