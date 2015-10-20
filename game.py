@@ -4,7 +4,8 @@ from items import *
 from food import *
 from player import *
 from punctuation import *
-import sys
+import sys, time
+
 
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
@@ -25,6 +26,7 @@ def list_of_items(items):
     """
     return ", ".join([i['name'] for i in items])
 
+
 def print_room_items(room):
     """This function takes a room as an input and nicely displays a list of items
     found in this room (followed by a blank line). If there are no items in
@@ -32,7 +34,7 @@ def print_room_items(room):
     items.py for the definition of an item. This function uses list_of_items()
     to produce a comma-separated list of item names. For example:
 
-    >>> print_room_items(rooms["Reception"])
+    >>> print_room_items(rooms["Student Union"])
     There is a pack of biscuits, a student handbook here.
     <BLANKLINE>
 
@@ -43,8 +45,6 @@ def print_room_items(room):
     >>> print_room_items(rooms["Admins"])
 
     (no output)
-
-    Note: <BLANKLINE> here means that doctest should expect a blank line.
 
     """
     if room["items"]:
@@ -65,6 +65,7 @@ def print_inventory_items(items):
     if items:
         print("You have " + list_of_items(inventory) + ".")
         print()
+
 
 def print_room(room):
     """This function takes a room as an input and nicely displays its name
@@ -308,15 +309,15 @@ def execute_command(command):
         else:
             print("Drop what?")
 
-    elif command[0] == "exit":
-        execute_exit()
-
     elif command[0] == "eat":
         if len(command) > 1:
             execute_eat(command[1])
         else:
             print("Eat what?")
-            
+    
+    elif command[0] == "exit":
+        execute_exit()
+
     else:
         print("This makes no sense.")
 
@@ -364,6 +365,7 @@ def final_boss():
     """
     pass
 
+
 def win():
     """This function defines the winning condition of the game. Once the winning
     conditions have been met. The player wins the game. 
@@ -405,7 +407,7 @@ def calculate_health():
 #ADD BATTLE SHIT HERE 
 
 
-def alive():
+def alive(health):
     """This function takes the player's health as an argument and checks if the 
     health is 0. If so then the function will return that the player is dead and
     the game is over. 
@@ -417,12 +419,21 @@ def alive():
     >>> alive(-10):
     False
     """
-    if player["health"] <= 0:
+    if health <= 0:
         return False
+
+
+def intro():
+    print("You are sitting in the Students Union lounge whilst watching TV...")
+    time.sleep(3)
+    print("...when suddenly you see that Kirill has been kidnapped...")
+    time.sleep(3)
+    print("...and without him around, you will never stuff... ")
 
 
 # This is the entry point of our program
 def main():
+    intro()
     # Main game loop
     while True:
         # Display game status (room description, inventory, hunger, health, etc.)
@@ -430,8 +441,8 @@ def main():
         print_room(current_room)
         print_inventory_items(inventory)
         # Check if the player has won the game.
-        alive()
         hunger()
+        alive(player["health"])
         print("Your health is: " + str(player["health"]))
         print()
         # If not, show the menu with possible actions and ask the player
