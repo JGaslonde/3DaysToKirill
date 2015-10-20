@@ -1,4 +1,5 @@
 from items import *
+from food import *
 
 
 room_Students_Union = {
@@ -13,7 +14,9 @@ this time """,
 
     "exits": {"west": "Matt Office", "south": "Information Centre", "north": "GP", "east": "Support Centre"},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": False
 }
 
 
@@ -26,7 +29,9 @@ kidnapping and take some snacks""",
 
     "exits": {"west": "Courts", "east": "Students Union"},
 
-    "items": [food_burger]
+    "items": [food_burger],
+
+    "Bad Room": False
 
 }
 
@@ -41,7 +46,9 @@ order to make you slower. Make sure you won't be doing the same mistake again"""
 
     "exits": {"east": "The Lounge", "west": "Information Centre", "south": "Prison"},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": True
 
 }
 
@@ -57,7 +64,9 @@ somewhere close, make sure you do not miss that place""",
 
     "exits": {"north": "Library", "south": "Students Union"},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": False
 
 }
 
@@ -71,7 +80,9 @@ now you only have to take the key which will be very important when you will rea
 
     "exits": {"north": "Y-Plas", "south": "The Lounge", "west": "The Taf"},
 
-    "items": [item_key_1]
+    "items": [item_key_1],
+
+    "Bad Room": False
 
 }
 
@@ -85,7 +96,9 @@ And make sure you have enough health to finish the game.""",
 
     "exits": {"south": "Students Union", "west": "Support Centre"},
 
-    "items": [food_banana]
+    "items": [food_banana],
+
+    "Bad Room": False
 
 }
 
@@ -101,7 +114,9 @@ I believe IT WILL TAKE A WHILE to make them inactive """,
 
     "exits": {"east": "Library", "west": "Support Centre"},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": True
 
 }
 
@@ -118,7 +133,9 @@ there
 collect everything before going there""",
 
     "exits": {"north": "Y-Plas", "east": "The Taf", "west": "GP"},
-    "items": []
+    "items": [],
+
+    "Bad Room": False
 
 }
 
@@ -132,7 +149,9 @@ Keep looking around and make sure you choice the best way out """,
 
     "exits": {"west": "Trevithick Library", "east": "Support Centre", "south": "Lab 2"},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": False
 
 }
 
@@ -148,7 +167,9 @@ which are moving very fast in order to make you SLOVER AND MORE HARMFUL""",
 
     "exits": {"north": "GP", "south": "Kirill Office"},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": True
 
 }
 
@@ -164,7 +185,9 @@ by Bad rooms in both ways""",
 
     "exits": {"west": "Cafeteria", "east": "GP", "south": "Lab 2"},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": False
 
 }
 
@@ -179,7 +202,9 @@ make yourself healthier""",
 
     "exits": {"east": "Matt Office", "south": "Kirill Office"},
 
-    "items": [food_salad]
+    "items": [food_salad],
+
+    "Bad Room": False
 
 }
 
@@ -194,7 +219,9 @@ when you will reach Prison. Keep hurry, time is going to end""",
 
     "exits": {"north": "Cafeteria", "east": "Lab 2", "south": "Starbucks Coffee"},
 
-    "items": [item_key_2]
+    "items": [item_key_2],
+
+    "Bad Room": False
 
 }
 
@@ -208,7 +235,9 @@ Just choice the food you want and keep going! """,
 
     "exits": {"north": "Kirill Office", "east": "Courts"},
 
-    "items": [food_kebab] 
+    "items": [food_kebab],
+
+    "Bad Room": False
 
 }
 
@@ -224,7 +253,9 @@ And enough time to reach Kirill""",
 
     "exits": {"east": "Courts", "south": "Starbucks Coffee"},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": True
 
 }
 
@@ -239,7 +270,9 @@ the best time to use Chloroform against guardian. Just keep going!!! """,
 
     "exits": {"north": "Matt Office", "east": "Prison"},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": False
 
 }
 
@@ -255,7 +288,9 @@ And TWO KEYS to Unlock the doors""",
 
     "exits": {},
 
-    "items": []
+    "items": [],
+
+    "Bad Room": False
 
 }
 
