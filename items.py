@@ -24,3 +24,5 @@ item_weapon = {
 	"description":
 	"""This is a thing."""
 }
+
+items_to_win = {item_key_1, item_key_2, item_weapon}

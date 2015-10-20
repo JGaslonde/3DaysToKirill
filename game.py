@@ -273,6 +273,7 @@ def execute_eat(food_item):
                 # Remove from inventory and add to the current rooms list of items.
                 inventory.remove(food)
                 player["hunger"] = 100
+                print(food["description"])
                 break
 
         if food_item not in (food["id"]):
