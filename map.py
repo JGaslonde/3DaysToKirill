@@ -7,9 +7,10 @@ room_Students_Union = {
 
     "description":
     """You are sitting in the Students Union lounge while on TV you see that 
-your favourite lecturer in Computer Science is arrested and kept in Prison 
-under high securitiy. There are two secure doors, which have to be opened by using 
-TWO KEYS. You will also need something in order to knock out the guard at the entrance""",
+your favourite lecturer in Computer Science has been arrested and is being
+kept in Prison under high securitiy. There are two secure doors, which have 
+to be opened by using TWO KEYS. You will also need something in order to
+knock out the guard at the entrance""",
 
     "exits": {"west": "Matt Office", "south": "Information Centre", "north": "GP", "east": "Support Centre"},
 
