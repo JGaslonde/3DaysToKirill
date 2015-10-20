@@ -7,7 +7,7 @@ player = {
 
     "health": 100,
 
-    "hunger": 0, 
+    "hunger": 10, 
 
     "alive": True
 
