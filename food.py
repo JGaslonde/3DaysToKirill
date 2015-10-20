@@ -1,4 +1,4 @@
-food = [food_burger, food_salad, food_kebab, food_banana]
+
 
 food_burger = {
 	"id": "burger",
@@ -6,7 +6,7 @@ food_burger = {
 	"name": "a burger",
 
 	"description":
-	"""A tasty burger from everyone's favourite burger chain....Wendy's.""",
+	"""A tasty burger from everyone's favourite burger chain....Wendy's."""
 }
 
 food_salad = {
@@ -37,3 +37,4 @@ food_banana= {
 	"description":
 	"""hahah bottom """,
 }
+food = [food_burger, food_salad, food_kebab, food_banana]
