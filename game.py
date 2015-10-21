@@ -4,8 +4,10 @@ from items import *
 from food import *
 from player import *
 from punctuation import *
-import sys, time
+import sys
+import time
 
+time_left = 72
 
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
@@ -207,6 +209,7 @@ def execute_go(direction):
     if direction in current_room["exits"]:            
             current_room = move(current_room["exits"], direction)
             calculate_hunger()
+            time_left()
             return current_room
     else:
         print("You cannot go there.")
@@ -384,7 +387,7 @@ def hunger():
 
     if player["hunger"] == 0:
         print("Get food quick or you will starve.")
-        player["health"] -= 10 
+        player["health"] -= 10
         print()
 
 
@@ -405,7 +408,7 @@ def calculate_health():
     if current_room["Bad Rooms"] == True:
         player["health"] -= 15
 
-#ADD BATTLE SHIT HERE 
+#ADD BATTLE SHIT HERE
 
 
 def alive(health):
@@ -445,6 +448,7 @@ def main():
         hunger()
         alive(player["health"])
         print("Your health is: " + str(player["health"]))
+        print("You have " + str(time_left) + " hours left")
         print()
         # If not, show the menu with possible actions and ask the player
         command = menu(current_room["exits"], current_room["items"], inventory, food)
@@ -462,6 +466,10 @@ def win():
     # Cheat way to win the game.
     print("Congrats you win, cheat")
     sys.exit()
+
+def time_left():
+    time_left -= 1
+    return time_left
 
 
 # If we are running as a script, execute main function.
