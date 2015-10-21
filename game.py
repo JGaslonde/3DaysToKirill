@@ -162,20 +162,35 @@ def print_menu(exits, room_items, inv_items, food_items):
     # Iterate over available exits
     for direction in exits:
         # Print the exit name and where it leads to
-        print_exit(direction, exit_leads_to(exits, direction))
+        print_exit(direction, exit_leads_to(exits, direction))  
+    print()
+
     # Iterate over available room items.
     for item in room_items:
         # Print the option to take each item.
         print("TAKE " + item["id"].upper() + " to take " + item["name"] + ".")
+    if room_items != []:
+        print()
+
     # Iterate over each item in the players inventory.
     for item in inv_items:
         # Print the option to drop each item.
         print("DROP " + item["id"].upper() + " to drop your " + item["name"] + ".")
+    if inv_items != []:
+        print()
+
     # Iterate over each item in the food inventory.
     for food in food_items:
         if food in inventory:
         # Print the option to eat each item.
             print("EAT " + food["id"].upper() + " to eat " + food["name"] + ".")
+    if food_items != []:
+        print()
+
+    for food in room_items:
+        print("BUY " + food["id"].upper() + " to buy " + food["name"] + " for £" + str(food["cost"]) + ".")
+    if room_items != []:
+        print()
     print("What do you want to do?")
 
 
@@ -209,7 +224,7 @@ def execute_go(direction):
     if direction in current_room["exits"]:            
             current_room = move(current_room["exits"], direction)
             calculate_hunger()
-            time_left()
+            calculate_time()
             return current_room
     else:
         print("You cannot go there.")
@@ -228,10 +243,13 @@ def execute_take(item_id):
         for item in current_room["items"]:
             # If there are items in the current room and it matches the players input:
             if item["id"] == item_id:
+                if item in food:
+                    outro(3)
+                else:
                 # Remove from the current room and add to the inventory list of items.
-                current_room["items"].remove(item)
-                inventory.append(item)
-                break
+                    current_room["items"].remove(item)
+                    inventory.append(item)
+                    break
 
         if item_id not in (item["id"]):
             # If there items in the current room, but the input does not match any of them, print said message.
@@ -275,14 +293,24 @@ def execute_eat(food_item):
             if food["id"] == food_item:
                 # Remove from inventory and add to the current rooms list of items.
                 inventory.remove(food)
-                player["hunger"] = 100
+                player["hunger"] += food["hunger"]
+                if player["hunger"] > 100:
+                    player["hunger"] = 100
                 print(food["description"])
-                break
+                return player["hunger"]
 
         if food_item not in (food["id"]):
             # If there items in the inventory, but the input does not match any of them, print said message.
             print("You cannot eat that item")
-     
+
+
+def execute_buy(food_item):
+    if current_room == rooms["Cafeteria"] or rooms["The Taf"] or rooms["Starbucks Coffee"]:
+        if player["money"] >= food_item["cost"]:
+            inventory.append(food_item)
+            player["money"] -= food_item["cost"]
+            return player["money"]
+
 
 def execute_command(command):
     """This function takes a command (a list of words as returned by
@@ -318,9 +346,18 @@ def execute_command(command):
             execute_eat(command[1])
         else:
             print("Eat what?")
+
+    elif command[0] == "buy":
+        if len(command) > 1:
+            execute_buy(command[1])
+        else:
+            print("Buy what?")
     
     elif command[0] == "exit":
         execute_exit()
+
+    elif command[0] == "win":
+        win()
 
     else:
         print("This makes no sense.")
@@ -363,18 +400,59 @@ def move(exits, direction):
     return rooms[exits[direction]]
 
 
-def final_boss():
-    """This function determines if the player has all the necessary items in
-    order to progress to the final room.
-    """
-    pass
-
-
-def win():
+def legit_win():
     """This function defines the winning condition of the game. Once the winning
     conditions have been met. The player wins the game. 
     """
-    pass
+    if len(rooms["Prison"]["items"]) == 3 and items_to_win in rooms["Prison"]["items"]:
+        print("With all the keys and the chloroform located inside the prison...")
+        time.sleep(2)
+        print("...you free Kirill? ")
+        choice()
+
+def choice():
+    print("Now that you have all the items required to free Kirill...")
+    time.sleep(2)
+    print("...do you really want to free him?")
+    time.sleep(2)
+    print("I mean, do you really want the grade? can you be sure he will")
+    print("give the grade to you after you free him?")
+    time.sleep(2)
+    print("Will freeing him from a prison even matter towards your grade?")
+    print("What do you say? Do you want to free Kirill or not? Yes or No?")
+    answer = input("")
+    answer_1 = normalise_input(answer)
+    if answer_1 == "yes":
+        print("Are you sure? Final answer?")
+        final_answer = input("")
+        final_answer_1 = normalise_input(final_answer)
+        if final_answer_1 == "yes":
+            outro(1)
+
+    elif answer_1 == "no":
+        print("Are you sure? Final answer?")
+        final_answer = input("")
+        final_answer_1 = normalise_input(final_answer)
+        if final_answer_1 == "no":
+            outro(2)
+
+
+def outro(value):
+    if value == 1:
+        print("Congrats!, You managed to free Kirill in under 3 days")
+        sys.exit()
+    elif value == 2:
+        print("Well fine then. Now you will never get the grade")
+        sys.exit()
+    elif value == 3:
+        print("You get caught taking an item without paying for it.")
+        time.sleep(2)
+        print("You are sent to prison...where you see Kirill...")
+        time.sleep(2)
+        print("...and soap...")
+        time.sleep(4)
+        print("THE IRONY")
+        sys.exit()
 
 
 def hunger():
@@ -408,8 +486,6 @@ def calculate_health():
     if current_room["Bad Rooms"] == True:
         player["health"] -= 15
 
-#ADD BATTLE SHIT HERE
-
 
 def alive(health):
     """This function takes the player's health as an argument and checks if the 
@@ -429,11 +505,22 @@ def alive(health):
 
 def intro():
     print("You are sitting in the Students Union lounge whilst watching TV...")
-    time.sleep(3)
+    time.sleep(1)
     print("...when suddenly you see that Kirill has been kidnapped...")
-    time.sleep(3)
-    print("...and without him around, you will never stuff... ")
+    time.sleep(1)
+    print("...and without him around, you will never get the grade...")
+    time.sleep(1)
+    print("...to progress in life.")
+    time.sleep(1)
 
+def arressted():
+    global current_room
+    if current_room == "Prison": 
+        if item_guard_outfit not in inventory:
+            print("You are not supossed to be here go back to the student union")
+            current_room = rooms["Students Union"]
+
+            return current_room
 
 # This is the entry point of our program
 def main():
@@ -442,16 +529,20 @@ def main():
     while True:
         # Display game status (room description, inventory, hunger, health, etc.)
         print("---------------------------------------------------")
+        arressted()
         print_room(current_room)
         print_inventory_items(inventory)
         # Check if the player has won the game.
         hunger()
-        alive(player["health"])
+        lose()
         print("Your health is: " + str(player["health"]))
         print("You have " + str(time_left) + " hours left")
+        print("You have £" + str(player["money"]))
         print()
         # If not, show the menu with possible actions and ask the player
         command = menu(current_room["exits"], current_room["items"], inventory, food)
+
+
 
         # Execute the player's command
         execute_command(command)
@@ -467,9 +558,32 @@ def win():
     print("Congrats you win, cheat")
     sys.exit()
 
-def time_left():
+
+def calculate_time():
+    global time_left
     time_left -= 1
     return time_left
+
+
+def lose():
+    if(time_left == 0):
+        print("And so, as you have so valiantly tried, alas... ")
+        time.sleep(2)
+        print("You have run out of time. Kirill is trapped...")
+        time.sleep(2)
+        print("and you will never get a good grade...")
+        time.sleep(2)
+        print("maybe you should work harder next time instead of playing games.")
+        sys.exit()
+    elif(alive(player["health"])) == False:
+        print("And so, as you have so valiantly tried, alas... ")
+        time.sleep(2)
+        print("You have died. Kirill is trapped...")
+        time.sleep(2)
+        print("and you will never get a good grade...")
+        time.sleep(2)
+        print("maybe you should work harder next time instead of playing games.")
+        sys.exit()
 
 
 # If we are running as a script, execute main function.

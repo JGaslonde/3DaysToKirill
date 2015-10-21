@@ -29,7 +29,7 @@ room_Info_Centre = {
 
     "exits": {"west": "Courts", "east": "Students Union"},
 
-    "items": [food_burger],
+    "items": [],
 
     "Bad Room": False
 
@@ -95,7 +95,7 @@ Also make sure you have enough health to finish the game.""",
 
     "exits": {"south": "Students Union", "west": "Support Centre"},
 
-    "items": [food_banana],
+    "items": [food_burger],
 
     "Bad Room": False
 
@@ -145,7 +145,7 @@ room_GP = {
 
     "exits": {"west": "Trevithick Library", "east": "Support Centre", "south": "Lab 2"},
 
-    "items": [],
+    "items": [item_chloroform],
 
     "Bad Room": False
 
@@ -200,7 +200,7 @@ room_Cafeteria = {
 
     "exits": {"east": "Matt Office", "south": "Kirill Office"},
 
-    "items": [food_salad],
+    "items": [food_salad, food_cookie, food_banana, food_burger],
 
     "Bad Room": False
 
@@ -234,7 +234,7 @@ room_Starbucks = {
 
     "exits": {"north": "Kirill Office", "east": "Courts"},
 
-    "items": [food_cookie],
+    "items": [food_cookie, food_banana],
 
     "Bad Room": False
 

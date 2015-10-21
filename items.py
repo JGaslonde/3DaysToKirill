@@ -1,28 +1,38 @@
 item_key_1 = {
 	"id": "key 1",
 
-	"name": "Library Card",
+	"name": "Key 1",
 
 	"description":
-	"""This is a thing."""
+	"""A key that looks to open a jail cell....hmmm.."""
 }
 
 item_key_2 = {
 	"id": "key 2",
 
-	"name": "Library Card",
+	"name": "Key 2",
 
 	"description":
-	"""This is a thing."""
+	"""Another jail cell key."""
 }
 
-item_weapon = {
-	"id": "key 3",
+item_chloroform = {
+	"id": "chloroform",
 
-	"name": "a weapon",
+	"name": "a bottle of chloroform",
 
 	"description":
-	"""This is a thing."""
+	"""This is illegal right? This is what the kids do at parties?....Right?."""
 }
 
-items_to_win = [item_key_1, item_key_2, item_weapon]
+item_guard_outfit = {
+	"id": "guard outfit",
+
+	"name": "a prison guards uniform",
+
+	"description":
+	"""A guards outfit that seems to be from the prison you want to visit...
+a bit convenient don't you think."""
+}
+
+items_to_win = [item_key_1, item_key_2, item_chloroform]

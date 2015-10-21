@@ -7,11 +7,13 @@ player = {
 
     "health": 100,
 
-    "hunger": 10, 
+    "hunger": 100, 
 
-    "alive": True
+    "alive": True,
+
+    "money": 50
 
 }
 
 current_room = rooms["Students Union"]
-inventory = [food_burger, item_key_1]
+inventory = []
