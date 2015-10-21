@@ -51,4 +51,5 @@ food_banana= {
 
 	"hunger": 15
 }
+
 food = [food_burger, food_salad, food_cookie, food_banana]

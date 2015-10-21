@@ -25,7 +25,7 @@ room_Info_Centre = {
 
     "description":
     """You are at the Information Centre, there are a few members of staff
-    discussing the arrest of Kirill. On the counter there is food.""",
+discussing the arrest of Kirill. On the counter there is food.""",
 
     "exits": {"west": "Courts", "east": "Students Union"},
 
@@ -58,8 +58,8 @@ room_Lounge = {
 
     "description":
     """Now you can take a rest because this room is the safest place of the game. 
-    So look around and make sure you find out everything that 
-is related with Kirill's last visited areas as one of them should give some clues.""",
+So look around and make sure you find out everything that is related with 
+Kirill's last visited areas as one of them should give some clues.""",
 
     "exits": {"north": "Library", "south": "Students Union"},
 
@@ -74,8 +74,9 @@ room_Library = {
     "name": "Library",
 
     "description":
-    """Congratulations you found one of the places where Kirill was before he was arrested,
-now you only have to take the key which will be very important when you will reach Prison""",
+    """Congratulations you found one of the places where Kirill 
+was before he was arrested, now you only have to take the key which 
+will be very important when you will reach Prison.""",
 
     "exits": {"north": "Y-Plas", "south": "The Lounge", "west": "The Taf"},
 
@@ -90,7 +91,7 @@ room_Taf = {
     "name": "The Taf",
 
     "description":
-    """ You are plotting the best way to help Kirill escape, keep doing this until the end.
+    """You are plotting the best way to help Kirill escape, keep doing this until the end.
 Also make sure you have enough health to finish the game.""",
 
     "exits": {"south": "Students Union", "west": "Support Centre"},
@@ -103,12 +104,12 @@ Also make sure you have enough health to finish the game.""",
 
 
 room_Plas = {
-    "name": "Y Plas",
+    "name": "Y-Plas",
 
     "description":
     """Oh, this is bad...
-    Now you are going to be attacked by the drunkest students you have ever
-    seen! They are like zombies! IT WILL TAKE A WHILE to get past these. """,
+Now you are going to be attacked by the drunkest students you have ever
+seen! They are like zombies! IT WILL TAKE A WHILE to get past these. """,
 
     "exits": {"east": "Library", "west": "Support Centre"},
 
@@ -123,12 +124,13 @@ room_Support = {
     "name": "Support Centre",
 
     "description":
-    """ You are getting lucky!!!
-    You have recieved more information about where Kirill is being held. 
-    There is no way in or out of prison without the Two Keys AND Chloroform, make sure you 
-    collect everything before going there!""",
+    """You are getting lucky!!!
+You have recieved more information about where Kirill is being held. 
+There is no way in or out of prison without the Two Keys AND Chloroform, make sure you 
+collect everything before going there!""",
 
     "exits": {"north": "Y-Plas", "east": "The Taf", "west": "GP"},
+
     "items": [],
 
     "Bad Room": False
@@ -141,7 +143,7 @@ room_GP = {
 
     "description":
     """You have reached the GP office. It is unsure why but there
-    is a bottle of Chloroform on the table, this may come in handy!""",
+is a bottle of Chloroform on the table, this may come in handy!""",
 
     "exits": {"west": "Trevithick Library", "east": "Support Centre", "south": "Lab 2"},
 
@@ -157,11 +159,11 @@ room_Lab2 = {
 
     "description":
     """Something bad is happening in the lab!
-    The room has become infested with little bald ugly creatures which are
-    tearing appart the room and strangling students with cables!
-    This could potentially cause a fire hazard?
-    I wonder where the Health and Safety officer is...
-    You must fight your way through and get out quick!""",
+The room has become infested with little bald ugly creatures which are
+tearing appart the room and strangling students with cables!
+This could potentially cause a fire hazard?
+I wonder where the Health and Safety officer is...
+You must fight your way through and get out quick!""",
 
     "exits": {"north": "GP", "south": "Kirill Office"},
 
@@ -177,9 +179,9 @@ room_Trevithick = {
 
     "description":
     """Now you know that Kirill was in one of these offices:
-    Kirill's Office or Matt's Office, but which one? You will have to find out yourself, 
-    just make sure you make the right choice because you are surounded 
-    by Bad rooms in both ways""",
+Kirill's Office or Matt's Office, but which one? You will have to find out yourself, 
+just make sure you make the right choice because you are surounded 
+by Bad rooms in both ways""",
 
     "exits": {"west": "Cafeteria", "east": "GP", "south": "Lab 2"},
 
@@ -195,8 +197,8 @@ room_Cafeteria = {
 
     "description":
     """Yay!!!
-    You found the cafeteria which is full of food, just chose whatever you want to eat
-    when you're feeling hungry. You need to stay healthy to complete your mission!""",
+You found the cafeteria which is full of food, just chose whatever you want to eat
+when you're feeling hungry. You need to stay healthy to complete your mission!""",
 
     "exits": {"east": "Matt Office", "south": "Kirill Office"},
 
@@ -211,7 +213,7 @@ room_KOffice = {
     "name": "Kirill Office",
 
     "description":
-    """ You are lucky enough to choice the best rooms ever!
+    """You are lucky enough to choice the best rooms ever!
 Now you have to find the Key which will be the most important thing 
 when you will reach Prison. Keep hurry, time is going to end""",
 
@@ -228,9 +230,9 @@ room_Starbucks = {
     "name": "Starbucks Coffee",
 
     "description":
-    """ You found the most expensive and the strongest coffee ever.
-    There are also a few snacks here, can you really afford it?
-    Just choose the food you want and keep going! """,
+    """You found the most expensive and the strongest coffee ever.
+There are also a few snacks here, can you really afford it?
+Just choose the food you want and keep going! """,
 
     "exits": {"north": "Kirill Office", "east": "Courts"},
 
@@ -245,11 +247,11 @@ room_MOffice = {
     "name": "Matt Office",
 
     "description":
-    """ Oh, that is horrible!
-    All room is destroyed by the same creatures from the lab!
-    Their attention is on you, they run at you as you panic!
-    Make sure you have enough strenght to fight them...
-    Do you really have time for this??""",
+    """Oh, that is horrible!
+All room is destroyed by the same creatures from the lab!
+Their attention is on you, they run at you as you panic!
+Make sure you have enough strenght to fight them...
+Do you really have time for this??""",
 
     "exits": {"east": "Courts", "south": "Starbucks Coffee"},
 
@@ -264,9 +266,9 @@ room_Courts = {
     "name": "Magistrate Courts",
 
     "description":
-    """ FANTASTIC! You're nearly there.
-    Now you are able to find out in which cell they are keeping Kirill and 
-    the best time to use the Chloroform on the guard. Just keep going!!! """,
+    """FANTASTIC! You're nearly there.
+Now you are able to find out in which cell they are keeping Kirill and 
+the best time to use the Chloroform on the guard. Just keep going!!! """,
 
     "exits": {"north": "Matt Office", "east": "Prison"},
 
@@ -283,9 +285,9 @@ room_Prison = {
     "description":
     """Congratulations!!!!
     
-    You have found Kirill.
-    All you need to do is knockout the guard and free Kirill
-    Use CHLOROFORM to knock him out and use the TWO KEYS to unlock the doors""",
+You have found Kirill.
+All you need to do is knockout the guard and free Kirill
+Use CHLOROFORM to knock him out and use the TWO KEYS to unlock the doors""",
 
     "exits": {},
 
@@ -294,6 +296,7 @@ room_Prison = {
     "Bad Room": False
 
 }
+
 
 rooms = {
     "Students Union": room_Students_Union,

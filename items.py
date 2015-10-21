@@ -1,7 +1,7 @@
 item_key_1 = {
 	"id": "key 1",
 
-	"name": "Key 1",
+	"name": "the 1st key",
 
 	"description":
 	"""A key that looks to open a jail cell....hmmm.."""
@@ -10,7 +10,7 @@ item_key_1 = {
 item_key_2 = {
 	"id": "key 2",
 
-	"name": "Key 2",
+	"name": "the 2nd key",
 
 	"description":
 	"""Another jail cell key."""

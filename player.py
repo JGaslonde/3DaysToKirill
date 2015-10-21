@@ -16,4 +16,4 @@ player = {
 }
 
 current_room = rooms["Students Union"]
-inventory = []
+inventory = [food_banana]

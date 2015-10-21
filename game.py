@@ -9,46 +9,58 @@ import time
 
 time_left = 72
 
+
+def intro():
+    """This function prints the introduction to the game when it is first loaded.
+    Each line is delayed by a command of 2 seconds.
+    """
+
+    print("You are sitting in the Students Union lounge whilst watching TV...")
+    time.sleep(2)
+    print("when suddenly you see that Kirill has been kidnapped...")
+    time.sleep(2)
+    print("and without him around, you will never get the grade to progress in life.")
+    time.sleep(2)
+
+
 def list_of_items(items):
-    """This function takes a list of items (see items.py for the definition) and
-    returns a comma-separated list of item names (as a string). For example:
+    """This function takes a list of items and returns a comma-separated list 
+    of item names. For example:
 
-    >>> list_of_items([item_pen, item_handbook])
-    'a pen, a student handbook'
+    >>> list_of_items([item_key_1, item_key_2])
+    'the 1st key, the 2nd key'
 
-    >>> list_of_items([item_id])
-    'id card'
+    >>> list_of_items([item_chloroform])
+    'a bottle of chloroform'
 
     >>> list_of_items([])
     ''
 
-    >>> list_of_items([item_money, item_handbook, item_laptop])
-    'money, a student handbook, laptop'
-
     """
+
     return ", ".join([i['name'] for i in items])
 
 
 def print_room_items(room):
     """This function takes a room as an input and nicely displays a list of items
     found in this room (followed by a blank line). If there are no items in
-    the room, nothing is printed. See map.py for the definition of a room, and
-    items.py for the definition of an item. This function uses list_of_items()
+    the room, nothing is printed. This function uses list_of_items()
     to produce a comma-separated list of item names. For example:
 
-    >>> print_room_items(rooms["Student Union"])
-    There is a pack of biscuits, a student handbook here.
+    >>> print_room_items(rooms["Cafeteria"])
+    There is a salad, a cookie, a banana, a burger here.
     <BLANKLINE>
 
-    >>> print_room_items(rooms["Office"])
-    There is a pen here.
+    >>> print_room_items(rooms["Library"])
+    There is the 1st key here.
     <BLANKLINE>
 
-    >>> print_room_items(rooms["Admins"])
+    >>> print_room_items(rooms["Y-Plas"])
 
     (no output)
 
     """
+
     if room["items"]:
         print("There is " + list_of_items(room["items"]) + " here.")
         print()
@@ -60,7 +72,7 @@ def print_inventory_items(items):
     print "You have ..." instead of "There is ... here.". For example:
 
     >>> print_inventory_items(inventory)
-    You have id card, laptop, money.
+    You have a banana.
     <BLANKLINE>
 
     """
@@ -72,21 +84,24 @@ def print_inventory_items(items):
 def print_room(room):
     """This function takes a room as an input and nicely displays its name
     and description. The room argument is a dictionary with entries "name",
-    "description" etc. (see map.py for the definition). The name of the room
-    is printed in all capitals and framed by blank lines. Then follows the
-    description of the room and a blank line again. If there are any items
-    in the room, the list of items is printed next followed by a blank line
+    "description" etc. The name of the room is printed in all capitals and 
+    framed by blank lines. Then follows the description of the room and a 
+    blank line again. If there are any items in the room, the list of items 
+    is printed next followed by a blank line
     (use print_room_items() for this). For example:
 
-    >>> print_room(rooms["Office"])
+    >>> print_room(rooms["Library"])
     <BLANKLINE>
-    THE HALLWAY
+    LIBRARY
     <BLANKLINE>
-    DESCRIPTION HERE.
+    Congratulations you found one of the places where Kirill 
+    was before he was arrested, now you only have to take the key which 
+    will be very important when you will reach Prison.
     <BLANKLINE>
-    ANY ITEMS.
+    There is the 1st key here.
     <BLANKLINE>
     """
+
     # Display room name
     print()
     print(room["name"].upper())
@@ -102,13 +117,14 @@ def exit_leads_to(exits, direction):
     exit taken from this dictionary). It returns the name of the room into which
     this exit leads. For example:
 
-    >>> exit_leads_to(rooms["Reception"]["exits"], "south")
-    "MJ and Simon's room"
-    >>> exit_leads_to(rooms["Reception"]["exits"], "east")
-    "your personal tutor's office"
-    >>> exit_leads_to(rooms["Tutor"]["exits"], "west")
-    'Reception'
+    >>> exit_leads_to(rooms["Students Union"]["exits"], "south")
+    'Information Centre'
+    >>> exit_leads_to(rooms["Hall"]["exits"], "east")
+    'The Lounge'
+    >>> exit_leads_to(rooms["The Taf"]["exits"], "west")
+    'Support Centre'
     """
+
     return rooms[exits[direction]]["name"]
 
 
@@ -120,11 +136,12 @@ def print_exit(direction, leads_to):
     GO <EXIT NAME UPPERCASE> to <where it leads>.
 
     For example:
-    >>> print_exit("east", "you personal tutor's office")
-    GO EAST to you personal tutor's office.
-    >>> print_exit("south", "MJ and Simon's room")
-    GO SOUTH to MJ and Simon's room.
+    >>> print_exit("east", "the library")
+    GO EAST to the library.
+    >>> print_exit("south", "the students union")
+    GO SOUTH to the students union.
     """
+
     print("GO " + direction.upper() + " to " + leads_to + ".")
 
 
@@ -144,20 +161,17 @@ def print_menu(exits, room_items, inv_items, food_items):
 
     "DROP <ITEM ID> to drop <item name>."
 
-    For example, the menu of actions available at the Reception may look like this:
+    For example, the menu of actions available at the Taf may look like this:
 
     You can:
-    GO EAST to your personal tutor's office.
-    GO WEST to the parking lot.
-    GO SOUTH to MJ and Simon's room.
-    TAKE BISCUITS to take a pack of biscuits.
-    TAKE HANDBOOK to take a student handbook.
-    DROP ID to drop your id card.
-    DROP LAPTOP to drop your laptop.
-    DROP MONEY to drop your money.
-    What do you want to do?
+    GO WEST to the support centre.
+    GO SOUTH to the students union.
+    TAKE BURGER to take a burger.
 
+
+    What do you want to do?
     """
+
     print("You can:")
     # Iterate over available exits
     for direction in exits:
@@ -169,13 +183,15 @@ def print_menu(exits, room_items, inv_items, food_items):
     for item in room_items:
         # Print the option to take each item.
         print("TAKE " + item["id"].upper() + " to take " + item["name"] + ".")
+    
     if room_items != []:
         print()
 
     # Iterate over each item in the players inventory.
     for item in inv_items:
         # Print the option to drop each item.
-        print("DROP " + item["id"].upper() + " to drop your " + item["name"] + ".")
+        print("DROP " + item["id"].upper() + " to drop " + item["name"] + ".")
+    
     if inv_items != []:
         print()
 
@@ -184,13 +200,19 @@ def print_menu(exits, room_items, inv_items, food_items):
         if food in inventory:
         # Print the option to eat each item.
             print("EAT " + food["id"].upper() + " to eat " + food["name"] + ".")
+    
     if food_items != []:
         print()
-
+    
+    # Iterate over each food in the room items.
     for food in room_items:
-        print("BUY " + food["id"].upper() + " to buy " + food["name"] + " for £" + str(food["cost"]) + ".")
+        if food in food_items and room_items:
+            # Print the option to buy each item.
+            print("BUY " + food["id"].upper() + " to buy " + food["name"] + " for £" + str(food["cost"]) + ".")
+
     if room_items != []:
         print()
+
     print("What do you want to do?")
 
 
@@ -201,26 +223,68 @@ def is_valid_exit(exits, chosen_exit):
     the name of the exit has been normalised by the function normalise_input().
     For example:
 
-    >>> is_valid_exit(rooms["Reception"]["exits"], "south")
+    >>> is_valid_exit(rooms["Students Union"]["exits"], "south")
     True
-    >>> is_valid_exit(rooms["Reception"]["exits"], "up")
+    >>> is_valid_exit(rooms["Students Union"]["exits"], "up")
     False
-    >>> is_valid_exit(rooms["Parking"]["exits"], "west")
+    >>> is_valid_exit(rooms["The Lounge"]["exits"], "west")
     False
-    >>> is_valid_exit(rooms["Parking"]["exits"], "east")
+    >>> is_valid_exit(rooms["Hall"]["exits"], "east")
     True
     """
+
     return chosen_exit in exits
+
+
+def calculate_time():
+    """This function calculates how much time the player has left to complete the game.
+    Each time the player moves to a room, the counter decrements by 1.
+    """
+    global time_left
+    time_left -= 1
+    
+    return time_left
+
+
+def calculate_hunger():
+    """This function calcluates the hunger off player each time they move between rooms.
+    The player's hunger will decrease by 5 each time they move between rooms.
+    """
+    
+    player["hunger"] -= 5
+    
+    if player["hunger"] < 0:
+        player["hunger"] = 0
+
+    return player["hunger"]
+
+
+def hunger():
+    """This function prints the hunger of the player each time they move between rooms.
+    If the player's health is 0 or lower, print a message telling the player to eat 
+    soon or they will starve as this function will also decrease the players health by
+    10.
+    """
+
+    print("Your hunger is: " + str(player["hunger"]))
+
+    if player["hunger"] == 0:
+        print("Get food quick or you will starve.")
+        player["health"] -= 10
 
 
 def execute_go(direction):
     """This function, given the direction (e.g. "south") updates the current room
     to reflect the movement of the player if the direction is a valid exit
     (and prints the name of the room into which the player is
-    moving). Otherwise, it prints "You cannot go there."
+    moving). This function also will call the calculate_hunger() and 
+    calculate_time() functions which will reduce the hunger of the player
+    and reduce the time to complete the game each time they move rooms. 
+    Otherwise, it prints "You cannot go there."
     """
-    # If the direction the user input is in the exits dictionary, return True, else return False.
+
     global current_room
+
     if direction in current_room["exits"]:            
             current_room = move(current_room["exits"], direction)
             calculate_hunger()
@@ -232,10 +296,12 @@ def execute_go(direction):
 
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
-    list of items in the current room to the player's inventory. However, if
-    there is no such item in the room, this function prints
+    list of items in the current room to the player's inventory. If the item the player
+    is trying to take is a food item, then outro(3) is called which ends the game for 
+    stealing. However, if there is no such item in the room, this function prints
     "You cannot take that."
     """
+
     # If there is no items in the current room display said message.
     if not (current_room["items"]):
         print("There is nothing here to take")
@@ -243,6 +309,7 @@ def execute_take(item_id):
         for item in current_room["items"]:
             # If there are items in the current room and it matches the players input:
             if item["id"] == item_id:
+                # Call the outro function if the item in question is a food item.
                 if item in food:
                     outro(3)
                 else:
@@ -261,6 +328,7 @@ def execute_drop(item_id):
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
+
     # If there is nothing in inventory display said message.
     if not (inventory):
         print("You have nothing to drop!")
@@ -279,11 +347,12 @@ def execute_drop(item_id):
 
 
 def execute_eat(food_item):
-    """This function takes an food_item as an argument and removes this item from
+    """This function takes a food_item as an argument and removes this item from
     the player's inventory and adds the value of the food_item to the player's health.
-    If no such items exist in the player's inventory, then the function prints, 
+    If no such item exist in the player's inventory, then the function prints, 
     "You cannot eat that." 
     """
+
     # If there is nothing in inventory display said message.
     if not (inventory):
         print("You have nothing to eat!")
@@ -291,11 +360,13 @@ def execute_eat(food_item):
         for food in inventory:
             # If there are items in the inventory and it matches the players input:
             if food["id"] == food_item:
-                # Remove from inventory and add to the current rooms list of items.
+                # Remove from inventory and add the hunger value of the food to the hunger of the player.
                 inventory.remove(food)
                 player["hunger"] += food["hunger"]
+                # Set the hunger to a maximum of 100 not matter how much food is consummed.
                 if player["hunger"] > 100:
                     player["hunger"] = 100
+                # Print the description of the food and return the new value of the hunger.
                 print(food["description"])
                 return player["hunger"]
 
@@ -305,19 +376,35 @@ def execute_eat(food_item):
 
 
 def execute_buy(food_item):
+    """This function takes a food_item as an argument and first checks if the player
+    is in the rooms where food and then checks if the player has enough money. If so, 
+    then the cost of the item is removed from the player's money. If not, then the function 
+    prints, "You don't have enough money to buy that." 
+    """
+    # Check if the current room is the only rooms assigned with food items.
     if current_room == rooms["Cafeteria"] or rooms["The Taf"] or rooms["Starbucks Coffee"]:
-        if player["money"] >= food_item["cost"]:
-            inventory.append(food_item)
-            player["money"] -= food_item["cost"]
-            return player["money"]
+        for food in current_room["items"]:
+            # For the FOOD that the food the player wants to buy.
+            if food["id"] == food_item:
+                # Check if there is enough money to buy it.
+                if player["money"] >= food["cost"]:
+                    # Add to player's inventory.
+                    inventory.append(food)
+                    # Subtract cost from money.
+                    player["money"] -= food["cost"]
+                    return player["money"]
+                else:
+                    print("You do not have enough money to buy that.")
+    else:
+        print("There is nothing to buy here.")
 
 
 def execute_command(command):
     """This function takes a command (a list of words as returned by
     normalise_input) and, depending on the type of action (the first word of
-    the command: "go", "take", or "drop"), executes either execute_go,
-    execute_take, or execute_drop, supplying the second word as the argument.
-
+    the command: "go", "take", "drop", or "buy"), executes either execute_go,
+    execute_take, execute_drop, or execute_buy, supplying the second word as 
+    the argument.
     """
 
     if 0 == len(command):
@@ -388,11 +475,11 @@ def move(exits, direction):
     dictionary "exits" of avaiable exits, they choose to move towards the exit
     with the name given by "direction". For example:
 
-    >>> move(rooms["Reception"]["exits"], "south") == rooms["Admins"]
+    >>> move(rooms["Students Union"]["exits"], "south") == rooms["Information Centre"]
     True
-    >>> move(rooms["Reception"]["exits"], "east") == rooms["Tutor"]
+    >>> move(rooms["Students Union"]["exits"], "east") == rooms["Support Centre"]
     True
-    >>> move(rooms["Reception"]["exits"], "west") == rooms["Office"]
+    >>> move(rooms["Students Union"]["exits"], "west") == rooms["Y-Plas"]
     False
     """
 
@@ -400,17 +487,81 @@ def move(exits, direction):
     return rooms[exits[direction]]
 
 
+def bad_room_health():
+    """This function determines if the room the player is in a bad room, in which they will
+    lose health everytime they are in that room.
+    """
+
+    if current_room["Bad Room"] == True:
+        player["health"] -= 15
+
+    return player["health"]
+
+
+def lose():
+    """This function is only active when the player has either run out of time or 
+    their health reaches zero. In each case a outro runs.
+    """
+    if(time_left == 0):
+
+        print("And so, as you have so valiantly tried, alas... ")
+        time.sleep(2)
+        print("You have run out of time. Kirill is trapped...")
+        time.sleep(2)
+        print("and you will never get a good grade...")
+        time.sleep(2)
+        print("maybe you should work harder next time instead of playing video games.")
+        sys.exit()
+
+    elif(alive(player["health"])) == False:
+
+        print("And so, as you have so valiantly tried, alas... ")
+        time.sleep(2)
+        print("You have died. Kirill is trapped...")
+        time.sleep(2)
+        print("and you will never get a good grade...")
+        time.sleep(2)
+        print("maybe you should work harder next time instead of playing games.")
+        sys.exit()
+
+
+def alive(health):
+    """This function takes the player's health as an argument and checks if the 
+    health is 0. If so then the function will return that the player is dead and
+    the game is over. 
+
+    >>> alive(10)
+    True
+    >>> alive(0)
+    False
+    >>> alive(-10)
+    False
+    """
+
+    if health <= 0:
+        return False
+    else: 
+        return True
+
+
 def legit_win():
     """This function defines the winning condition of the game. Once the winning
-    conditions have been met. The player wins the game. 
+    conditions have been met. The choice() function is run to get an ending. 
     """
+
     if len(rooms["Prison"]["items"]) == 3 and items_to_win in rooms["Prison"]["items"]:
         print("With all the keys and the chloroform located inside the prison...")
         time.sleep(2)
         print("...you free Kirill? ")
         choice()
 
+
 def choice():
+    """This function gives the player an option as the end of the game if they really
+    want to free Kirill. No matter if they say yes or no, they are asked to confirm 
+    their decision. Depending on their final decision will depend on which outro they get.  
+    """
+
     print("Now that you have all the items required to free Kirill...")
     time.sleep(2)
     print("...do you really want to free him?")
@@ -420,30 +571,54 @@ def choice():
     time.sleep(2)
     print("Will freeing him from a prison even matter towards your grade?")
     print("What do you say? Do you want to free Kirill or not? Yes or No?")
+    time.sleep(2)
+   
     answer = input("")
     answer_1 = normalise_input(answer)
     if answer_1 == "yes":
         print("Are you sure? Final answer?")
         final_answer = input("")
         final_answer_1 = normalise_input(final_answer)
+        
         if final_answer_1 == "yes":
             outro(1)
+        else:
+            outro(2)
 
-    elif answer_1 == "no":
+    else:
+        print("Try again")
+        answer = input("")
+
+    if answer_1 == "no":
         print("Are you sure? Final answer?")
         final_answer = input("")
         final_answer_1 = normalise_input(final_answer)
+        
         if final_answer_1 == "no":
             outro(2)
+        else:
+            outro(1)
+
+    else:
+        print("Try again")
+        answer = input("")
 
 
 def outro(value):
+    """This displays an outro of the game depending on what value is entered into
+    this function.
+    """
+    # Value executes in choice()
     if value == 1:
         print("Congrats!, You managed to free Kirill in under 3 days")
         sys.exit()
+    
+    # Value executes in choice()
     elif value == 2:
         print("Well fine then. Now you will never get the grade")
         sys.exit()
+    
+    # Value executes in execute_take()
     elif value == 3:
         print("You get caught taking an item without paying for it.")
         time.sleep(2)
@@ -455,137 +630,71 @@ def outro(value):
         sys.exit()
 
 
-def hunger():
-    """This function prints the hunger of the player each time they move between rooms.
-    If the player's health is 0 or lower, print a message telling the player to eat 
-    soon or they will starve as this function will also decrease the players health by
-    10.
+def arrested():
+    """This function checks if the player has the item_guard_outfit in order to get into 
+    the prison. If they do not have it, they are sent back to the student union.
     """
-    print("Your hunger is: " + str(player["hunger"]))
 
-    if player["hunger"] == 0:
-        print("Get food quick or you will starve.")
-        player["health"] -= 10
-        print()
-
-
-def calculate_hunger():
-    """This function calcluates the hunger off player each time they move between rooms.
-    The player's health will decrease by 5 each time they move between rooms.
-    """
-    
-    player["hunger"] -= 5
-    
-    if player["hunger"] < 0:
-        player["hunger"] = 0
-
-    return player["hunger"]
-
-
-def calculate_health():
-    if current_room["Bad Rooms"] == True:
-        player["health"] -= 15
-
-
-def alive(health):
-    """This function takes the player's health as an argument and checks if the 
-    health is 0. If so then the function will return that the player is dead and
-    the game is over. 
-
-    >>> alive(10):
-    True
-    >>> alive(0):
-    False
-    >>> alive(-10):
-    False
-    """
-    if health <= 0:
-        return False
-
-
-def intro():
-    print("You are sitting in the Students Union lounge whilst watching TV...")
-    time.sleep(1)
-    print("...when suddenly you see that Kirill has been kidnapped...")
-    time.sleep(1)
-    print("...and without him around, you will never get the grade...")
-    time.sleep(1)
-    print("...to progress in life.")
-    time.sleep(1)
-
-def arressted():
     global current_room
-    if current_room == "Prison": 
-        if item_guard_outfit not in inventory:
-            print("You are not supossed to be here go back to the student union")
-            current_room = rooms["Students Union"]
+    if ((current_room == rooms["Prison"]) and (item_guard_outfit not in inventory)):
+        print("You are not supossed to be here go back to the student union")
+        current_room = rooms["Students Union"]
 
-            return current_room
-
-# This is the entry point of our program
-def main():
-    intro()
-    # Main game loop
-    while True:
-        # Display game status (room description, inventory, hunger, health, etc.)
-        print("---------------------------------------------------")
-        arressted()
-        print_room(current_room)
-        print_inventory_items(inventory)
-        # Check if the player has won the game.
-        hunger()
-        lose()
-        print("Your health is: " + str(player["health"]))
-        print("You have " + str(time_left) + " hours left")
-        print("You have £" + str(player["money"]))
-        print()
-        # If not, show the menu with possible actions and ask the player
-        command = menu(current_room["exits"], current_room["items"], inventory, food)
+        return current_room
 
 
-
-        # Execute the player's command
-        execute_command(command)
-
-        
 def execute_exit():
+    """This function simplely creates an exit from the program."""
     # Exit the game.
     sys.exit()
 
 
 def win():
+    """This is a cheat way to win the game...only if the code is known.
+    (see execute_command() for command)"""
     # Cheat way to win the game.
     print("Congrats you win, cheat")
     sys.exit()
 
 
-def calculate_time():
-    global time_left
-    time_left -= 1
-    return time_left
+# This is the entry point of the program
+def main():
+    # First run the intro to start the game.
+    intro()
+    # Main game loop
+    while True:
+
+        # Check if current room is "bad" room in order to decrease health.
+        bad_room_health()
+
+        # Check if the player's health or time is zero in order to call function.
+        lose()
+
+        # Check if player has won the game. 
+        legit_win()
+
+        print("-------------------------------------------------------------------------------")
+        # Display game status (room description, inventory, hunger, health, etc.)
+        print_room(current_room)
+        print_inventory_items(inventory)
+        print("Your health is: " + str(player["health"]))
+        print("You have " + str(time_left) + " hours left")
+        print("You have £" + str(player["money"]))
+        # Display hunger of player.
+        hunger()
+        print()
 
 
-def lose():
-    if(time_left == 0):
-        print("And so, as you have so valiantly tried, alas... ")
-        time.sleep(2)
-        print("You have run out of time. Kirill is trapped...")
-        time.sleep(2)
-        print("and you will never get a good grade...")
-        time.sleep(2)
-        print("maybe you should work harder next time instead of playing games.")
-        sys.exit()
-    elif(alive(player["health"])) == False:
-        print("And so, as you have so valiantly tried, alas... ")
-        time.sleep(2)
-        print("You have died. Kirill is trapped...")
-        time.sleep(2)
-        print("and you will never get a good grade...")
-        time.sleep(2)
-        print("maybe you should work harder next time instead of playing games.")
-        sys.exit()
+        # If not, show the menu with possible actions and ask the player what to do next.
+        command = menu(current_room["exits"], current_room["items"], inventory, food)
+
+        # Execute the player's command
+        execute_command(command)
+
+        # Check if the player can be in the prison and has the necessary items.
+        arrested()
 
 
 # If we are running as a script, execute main function.
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()
