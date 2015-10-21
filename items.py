@@ -1,5 +1,5 @@
 item_key_1 = {
-	"id": "key 1",
+	"id": "key1",
 
 	"name": "the 1st key",
 
@@ -8,7 +8,7 @@ item_key_1 = {
 }
 
 item_key_2 = {
-	"id": "key 2",
+	"id": "key2",
 
 	"name": "the 2nd key",
 
@@ -26,7 +26,7 @@ item_chloroform = {
 }
 
 item_guard_outfit = {
-	"id": "guard outfit",
+	"id": "guardoutfit",
 
 	"name": "a prison guards uniform",
 

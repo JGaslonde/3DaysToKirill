@@ -27,7 +27,7 @@ room_Info_Centre = {
     """You are at the Information Centre, there are a few members of staff
 discussing the arrest of Kirill. On the counter there is food.""",
 
-    "exits": {"west": "Courts", "east": "Students Union"},
+    "exits": {"west": "Courts", "north": "Students Union"},
 
     "items": [],
 
@@ -272,7 +272,7 @@ the best time to use the Chloroform on the guard. Just keep going!!! """,
 
     "exits": {"north": "Matt Office", "east": "Prison"},
 
-    "items": [],
+    "items": [item_guard_outfit],
 
     "Bad Room": False
 

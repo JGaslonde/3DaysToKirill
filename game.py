@@ -544,17 +544,6 @@ def alive(health):
         return True
 
 
-def legit_win():
-    """This function defines the winning condition of the game. Once the winning
-    conditions have been met. The choice() function is run to get an ending. 
-    """
-
-    if len(rooms["Prison"]["items"]) == 3 and items_to_win in rooms["Prison"]["items"]:
-        print("With all the keys and the chloroform located inside the prison...")
-        time.sleep(2)
-        print("...you free Kirill? ")
-        choice()
-
 
 def choice():
     """This function gives the player an option as the end of the game if they really
@@ -611,11 +600,13 @@ def outro(value):
     # Value executes in choice()
     if value == 1:
         print("Congrats!, You managed to free Kirill in under 3 days")
+        print("YOU WON!")
         sys.exit()
     
     # Value executes in choice()
     elif value == 2:
         print("Well fine then. Now you will never get the grade")
+        print("GAME OVER.")
         sys.exit()
     
     # Value executes in execute_take()
@@ -627,6 +618,7 @@ def outro(value):
         print("...and soap...")
         time.sleep(4)
         print("THE IRONY")
+        print("GAME OVER.")
         sys.exit()
 
 
@@ -637,7 +629,7 @@ def arrested():
 
     global current_room
     if ((current_room == rooms["Prison"]) and (item_guard_outfit not in inventory)):
-        print("You are not supossed to be here go back to the student union")
+        print("You are not supossed to be here, go back to the student union")
         current_room = rooms["Students Union"]
 
         return current_room
@@ -670,8 +662,12 @@ def main():
         # Check if the player's health or time is zero in order to call function.
         lose()
 
-        # Check if player has won the game. 
-        legit_win()
+
+        #check to see if player is in prison, if so run choice()
+        if current_room == rooms["Prison"]:
+            choice()
+        else:
+            pass
 
         print("-------------------------------------------------------------------------------")
         # Display game status (room description, inventory, hunger, health, etc.)
