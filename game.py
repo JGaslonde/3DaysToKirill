@@ -544,6 +544,20 @@ def alive(health):
         return True
 
 
+def legit_win():
+    """This function defines the winning condition of the game. Once the winning
+    conditions have been met. The choice() function is run to get an ending. 
+    """
+    if item_key_1 in rooms["Prison"]["items"]:
+        if item_key_2 in rooms["Prison"]["items"]:
+            if item_chloroform in rooms["Prison"]["items"]:
+                print("With all the keys and the chloroform located inside the prison...")
+                print()
+                time.sleep(2)
+                print("you free Kirill? ")
+                print()
+                choice()
+
 
 def choice():
     """This function gives the player an option as the end of the game if they really
@@ -552,45 +566,29 @@ def choice():
     """
 
     print("Now that you have all the items required to free Kirill...")
+    print()
     time.sleep(2)
-    print("...do you really want to free him?")
+    print("do you really want to free him?")
     time.sleep(2)
     print("I mean, do you really want the grade? can you be sure he will")
+    print()
     print("give the grade to you after you free him?")
     time.sleep(2)
     print("Will freeing him from a prison even matter towards your grade?")
+    print()
     print("What do you say? Do you want to free Kirill or not? Yes or No?")
     time.sleep(2)
    
-    answer = input("")
-    answer_1 = normalise_input(answer)
-    if answer_1 == "yes":
-        print("Are you sure? Final answer?")
-        final_answer = input("")
-        final_answer_1 = normalise_input(final_answer)
-        
-        if final_answer_1 == "yes":
+    while True:
+        answer = input("> ")
+        if answer == "yes":
             outro(1)
-        else:
+        
+        elif answer == "no":
             outro(2)
 
-    else:
-        print("Try again")
-        answer = input("")
-
-    if answer_1 == "no":
-        print("Are you sure? Final answer?")
-        final_answer = input("")
-        final_answer_1 = normalise_input(final_answer)
-        
-        if final_answer_1 == "no":
-            outro(2)
         else:
-            outro(1)
-
-    else:
-        print("Try again")
-        answer = input("")
+            print("Try again")
 
 
 def outro(value):
@@ -600,13 +598,11 @@ def outro(value):
     # Value executes in choice()
     if value == 1:
         print("Congrats!, You managed to free Kirill in under 3 days")
-        print("YOU WON!")
         sys.exit()
     
     # Value executes in choice()
     elif value == 2:
         print("Well fine then. Now you will never get the grade")
-        print("GAME OVER.")
         sys.exit()
     
     # Value executes in execute_take()
@@ -618,7 +614,6 @@ def outro(value):
         print("...and soap...")
         time.sleep(4)
         print("THE IRONY")
-        print("GAME OVER.")
         sys.exit()
 
 
@@ -629,8 +624,10 @@ def arrested():
 
     global current_room
     if ((current_room == rooms["Prison"]) and (item_guard_outfit not in inventory)):
-        print("You are not supossed to be here, go back to the student union")
+        print("You are not supossed to be here go back to the student union")
         current_room = rooms["Students Union"]
+        time_left -= 20
+        inventory = []
 
         return current_room
 
@@ -662,13 +659,6 @@ def main():
         # Check if the player's health or time is zero in order to call function.
         lose()
 
-
-        #check to see if player is in prison, if so run choice()
-        if current_room == rooms["Prison"]:
-            choice()
-        else:
-            pass
-
         print("-------------------------------------------------------------------------------")
         # Display game status (room description, inventory, hunger, health, etc.)
         print_room(current_room)
@@ -680,7 +670,6 @@ def main():
         hunger()
         print()
 
-
         # If not, show the menu with possible actions and ask the player what to do next.
         command = menu(current_room["exits"], current_room["items"], inventory, food)
 
@@ -689,6 +678,9 @@ def main():
 
         # Check if the player can be in the prison and has the necessary items.
         arrested()
+
+        # Check if player has won the game. 
+        legit_win()
 
 
 # If we are running as a script, execute main function.
