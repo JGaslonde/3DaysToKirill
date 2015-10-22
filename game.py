@@ -96,7 +96,7 @@ def print_room(room):
     <BLANKLINE>
     Congratulations you found one of the places where Kirill 
     was before he was arrested, now you only have to take the key which 
-    will be very important when you will reach Prison.
+    will be very important when you reach Prison.
     <BLANKLINE>
     There is the 1st key here.
     <BLANKLINE>
@@ -629,9 +629,15 @@ def arrested():
     if ((current_room == rooms["Prison"]) and (item_guard_outfit not in inventory)):
         print("You are not supossed to be here go back to the student union")
         current_room = rooms["Students Union"]
-        time_left -= 20
+        if (time_left - 20) < 0:
+            time_left = 0 
+        else:
+            time_left -= 20
         inventory = []
-        player["money"] -= 20
+        if (player["money"] - 20) <= 0:
+            player["money"] = 0
+        else:
+            player["money"] -= 20
 
         if item_key_1 not in rooms["Library"]["items"]:
             rooms["Library"]["items"].append(item_key_1)
