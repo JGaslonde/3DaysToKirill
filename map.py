@@ -200,7 +200,7 @@ room_Cafeteria = {
 You found the cafeteria which is full of food, just chose whatever you want to eat
 when you're feeling hungry. You need to stay healthy to complete your mission!""",
 
-    "exits": {"east": "Matt Office", "south": "Kirill Office"},
+    "exits": {"east": "Matt Office", "south": "Kirill Office", "north": "Trevithick Library"},
 
     "items": [food_salad, food_cookie, food_banana, food_burger],
 
