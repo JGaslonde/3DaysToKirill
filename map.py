@@ -61,7 +61,7 @@ room_Lounge = {
 So look around and make sure you find out everything that is related with 
 Kirill's last visited areas as one of them should give some clues.""",
 
-    "exits": {"north": "Library", "south": "Students Union"},
+    "exits": {"north": "Library", "south": "Hall"},
 
     "items": [],
 
@@ -94,7 +94,7 @@ room_Taf = {
     """You are plotting the best way to help Kirill escape, keep doing this until the end.
 Also make sure you have enough health to finish the game.""",
 
-    "exits": {"south": "Hall", "west": "Support Centre", "north": "library"},
+    "exits": {"south": "Hall", "west": "Support Centre", "north": "Library"},
 
     "items": [food_burger],
 
@@ -272,7 +272,7 @@ Now you are able to find out in which cell they are keeping Kirill and
 the best time to use the Chloroform on the guard. Just keep going!!!
 Don't forget the Guard Outfit, without that you won't get very far...""",
 
-    "exits": {"north": "Matt Office", "east": "Prison"},
+    "exits": {"north": "Matt Office", "east": "Prison", "west": "Starbucks Coffee"},
 
     "items": [item_guard_outfit],
 

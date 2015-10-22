@@ -623,6 +623,7 @@ def arrested():
     """
 
     global current_room
+    global inventory
     if ((current_room == rooms["Prison"]) and (item_guard_outfit not in inventory)):
         print("You are not supossed to be here go back to the student union")
         current_room = rooms["Students Union"]
