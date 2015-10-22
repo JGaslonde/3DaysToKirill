@@ -35,4 +35,13 @@ item_guard_outfit = {
 a bit convenient don't you think."""
 }
 
+item_gavel = {
+	"id": "gavel",
+
+	"name": "a gavel",
+
+	"description":
+	"""A judges gavel...I wonder why it was in Matt's office."""
+}
+
 items_to_win = [item_key_1, item_key_2, item_chloroform]

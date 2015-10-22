@@ -256,7 +256,7 @@ Do you really have time for this??""",
 
     "exits": {"east": "Courts", "south": "Starbucks Coffee"},
 
-    "items": [],
+    "items": [item_gavel],
 
     "Bad Room": True
 
@@ -274,7 +274,7 @@ Don't forget the Guard Outfit, without that you won't get very far...""",
 
     "exits": {"north": "Matt Office", "east": "Prison", "west": "Starbucks Coffee"},
 
-    "items": [item_guard_outfit],
+    "items": [],
 
     "Bad Room": False
 

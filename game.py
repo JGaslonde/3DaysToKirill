@@ -624,13 +624,38 @@ def arrested():
 
     global current_room
     global inventory
+    global time_left
+
     if ((current_room == rooms["Prison"]) and (item_guard_outfit not in inventory)):
         print("You are not supossed to be here go back to the student union")
         current_room = rooms["Students Union"]
         time_left -= 20
         inventory = []
+        player["money"] -= 20
+
+        if item_key_1 not in rooms["Library"]["items"]:
+            rooms["Library"]["items"].append(item_key_1)
+
+        elif item_key_2 not in rooms["Kirill Office"]["items"]:
+            rooms["Kirill Office"]["items"].append(item_key_2)
+
+        elif item_chloroform not in rooms["GP"]["items"]:
+            rooms["GP"]["items"].append("item_chloroform")
+
+        elif item_gavel not in rooms["Matt Office"]["items"]:
+            rooms["Matt Office"]["items"].append(item_gavel)
 
         return current_room
+
+
+def gavel():
+    """This function will add the item_guard_outfit to the player's inventory
+    and remove the gavel from the rooms. This only gets called when the gavel 
+    is dropped into the courts.
+    """
+    if item_gavel in rooms["Courts"]["items"]:
+        rooms["Courts"]["items"].remove(item_gavel)
+        inventory.append(item_guard_outfit)
 
 
 def execute_exit():
@@ -659,6 +684,9 @@ def main():
 
         # Check if the player's health or time is zero in order to call function.
         lose()
+        
+        # Check if gavel is in the courts so player can get guard outfit.
+        gavel()
 
         print("-------------------------------------------------------------------------------")
         # Display game status (room description, inventory, hunger, health, etc.)
